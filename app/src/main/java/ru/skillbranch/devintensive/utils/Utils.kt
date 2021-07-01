@@ -1,7 +1,5 @@
 package ru.skillbranch.devintensive.utils
 
-import ru.skillbranch.devintensive.models.User
-
 object Utils {
     fun parseFullName(fullName:String?):Pair<String?, String?>{
         val parts : List<String>? = fullName?.split(" ")
@@ -85,7 +83,7 @@ object Utils {
         "Ь" to "",
         "Э" to "E",
         "Ю" to "Yu",
-        "Я" to "Ya",
+        "Я" to "Ya"
     )
 
     fun transliteration(payload: String, divider:String = " "): String {
@@ -100,16 +98,16 @@ object Utils {
     fun toInitials(firstName: String?, lastName: String?): String? {
         val firstInitial = when{
             firstName.isNullOrBlank() -> null
-            else -> firstName[0].uppercase()
+            else -> firstName[0].toUpperCase()
         }
         val lastInitial = when{
             lastName.isNullOrBlank() -> null
-            else -> lastName[0].uppercase()
+            else -> lastName[0].toUpperCase()
         }
         return when{
             firstInitial == null && lastInitial == null -> null
-            firstInitial == null -> lastInitial
-            lastInitial == null -> firstInitial
+            firstInitial == null -> lastInitial.toString()
+            lastInitial == null -> firstInitial.toString()
             else -> "$firstInitial$lastInitial"
         }
     }
